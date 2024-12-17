@@ -120,13 +120,15 @@ async function registerCommands() {
   }
 }
 
-(async () => {
+async function initializeBot() {
   try {
     await clearGuildCommands();
     await registerCommands();
+
+    await client.login(process.env.TOKEN);
   } catch (error) {
     console.error("Error during the command process:", error);
   }
-})();
+}
 
-client.login(process.env.TOKEN);
+initializeBot();
